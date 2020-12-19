@@ -1,0 +1,95 @@
+
+body {
+	background-color: slategray;
+}
+
+.gleis1 {
+	top: 200px;
+}
+
+
+.gleis2 {
+	top: 400px;
+}
+
+.gleis3 {
+	top: 600px;
+}
+
+.gleis4 {
+	top: 800px;
+}
+
+.disabled {
+	cursor: not-allowed;
+}
+
+.train {
+	position: absolute;
+	height: 120px;
+	
+	animation-iteration-count: 1;
+
+	animation-fill-mode: forwards;
+}
+
+.regio {
+	animation-duration: 7s;
+}
+
+.fern {
+	animation-duration: 6s;
+}
+
+.ice, .shinkansen {
+	animation-duration: 5s;
+}
+
+.ice {
+	 content:url(ICE_CAD_Proto_NoClass_WithRails.png);
+}
+
+.transrapit {
+		animation-duration: 3s;
+}
+
+
+.train-off {
+    //display: none;
+	opacity: 0.3;
+}
+
+.travel-left-to-station {
+    display: block;
+	opacity: 1;
+	animation-name: travel-left-to-station;
+	
+	// starting slow and rapidly stop
+	//animation-timing-function: cubic-bezier(.66,0,1,1);
+	
+	// for start stop
+	animation-timing-function: cubic-bezier(.43,.16,.64,1.02);
+}
+
+.travel-station-to-right {
+    display: block;
+	opacity: 1;
+	animation-name: travel-station-to-right;
+	
+	// starting slow and rapidly stop
+	//animation-timing-function: cubic-bezier(.66,0,1,1);
+	animation-timing-function: ease-in;
+	
+}
+
+
+@keyframes travel-left-to-station {
+  0%   {margin-left:-800px; }
+  100% {margin-left:800px; }
+}
+
+@keyframes travel-station-to-right {
+  0%   {margin-left:800px; }
+  100% {margin-left:1800px; }
+}
+
