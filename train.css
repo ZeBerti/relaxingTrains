@@ -3,20 +3,20 @@ body {
 	background-color: slategray;
 }
 
-.gleis1 {
+#gleis1 {
 	top: 200px;
 }
 
 
-.gleis2 {
+#gleis2 {
 	top: 400px;
 }
 
-.gleis3 {
+#gleis3 {
 	top: 600px;
 }
 
-.gleis4 {
+#gleis4 {
 	top: 800px;
 }
 
@@ -33,7 +33,7 @@ body {
 	animation-fill-mode: forwards;
 }
 
-.regio {
+.regio1 {
 	animation-duration: 7s;
 }
 
@@ -45,8 +45,16 @@ body {
 	animation-duration: 5s;
 }
 
+.regio1 {
+	 content:url(FullTrain.png);
+}
+
 .ice {
 	 content:url(ICE_CAD_Proto_NoClass_WithRails.png);
+}
+
+.shinkansen {
+	content:url(Shinkansn_Proto_1.jpg);
 }
 
 .transrapit {
