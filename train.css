@@ -4,20 +4,20 @@ body {
 }
 
 #gleis1 {
-	top: 200px;
+	top: 50px;
 }
 
 
 #gleis2 {
-	top: 400px;
+	top: 200px;
 }
 
 #gleis3 {
-	top: 600px;
+	top: 350px;
 }
 
 #gleis4 {
-	top: 800px;
+	top: 500px;
 }
 
 .disabled {
@@ -33,28 +33,42 @@ body {
 	animation-fill-mode: forwards;
 }
 
-.regio1 {
+.travel-left-to-station.regio1 {
+	animation-duration: 12s;
+}
+
+.travel-left-to-station.fern {
+	animation-duration: 11s;
+}
+
+.travel-left-to-station.ice, .travel-left-to-station.shinkansen {
+	animation-duration: 10s;
+}
+
+
+.travel-station-to-right.regio1 {
+	animation-duration: 9s;
+}
+
+.travel-station-to-right.fern {
+	animation-duration: 8s;
+}
+
+.travel-station-to-right.ice, .travel-station-to-right.shinkansen {
 	animation-duration: 7s;
 }
 
-.fern {
-	animation-duration: 6s;
-}
-
-.ice, .shinkansen {
-	animation-duration: 5s;
-}
 
 .regio1 {
-	 content:url(FullTrain.png);
+	 content:url(img/FullTrain.png);
 }
 
 .ice {
-	 content:url(ICE_CAD_Proto_NoClass_WithRails.png);
+	 content:url(img/ICE_CAD_Proto_NoClass_WithRails.png);
 }
 
 .shinkansen {
-	content:url(Shinkansn_Proto_1.jpg);
+	content:url(img/Shinkansn_Proto_1.jpg);
 }
 
 .transrapit {
@@ -75,8 +89,9 @@ body {
 	// starting slow and rapidly stop
 	//animation-timing-function: cubic-bezier(.66,0,1,1);
 	
-	// for start stop
-	animation-timing-function: cubic-bezier(.43,.16,.64,1.02);
+	// for start sto
+	//animation-timing-function: cubic-bezier(0.1,.02,.12,1.04);
+	animation-timing-function: cubic-bezier(.02,.04,.6,1.04);
 }
 
 .travel-station-to-right {
@@ -92,12 +107,12 @@ body {
 
 
 @keyframes travel-left-to-station {
-  0%   {margin-left:-800px; }
-  100% {margin-left:800px; }
+  0%   {margin-left:-5500px; }
+  100% {margin-left:100px; }
 }
 
 @keyframes travel-station-to-right {
-  0%   {margin-left:800px; }
-  100% {margin-left:1800px; }
+  0%   {margin-left:100px; }
+  100% {margin-left:3100px; }
 }
 

@@ -9,21 +9,27 @@ var gleis3 = null;
 var gleis4 = null;
 
 let maxTrain = 5;
-let maxGleis = 3;
+let maxGleis = 4;
 
 var allGleis = []
 var allZug = [];
 
+// imageClasses
+var regio1Image = "regio1";
+var iceImage = "ice";
+var shinkansenImage = "shinkansen";
+
+
 // Train Objects
 function Train(name, speed, returnPeriodInMs, stationTimeMs, imageClass, track) {
   
-  this.trainName = name;
+  this.name = name;
   this.speed = speed;
-  this.returnPeriodInMs = returnPeriodInMs;
-  this.stationTimeMs = stationTimeMs;
+  this.delayTillStart = returnPeriodInMs;
+  this.stationTime = stationTimeMs;
   this.imageClass = imageClass;
   this.track = track;
-  
+  this.testRandom = function(){ return 2222;};
 }
 
 
@@ -32,77 +38,70 @@ function startSimulation () {
 	disableAllButtons();
 	
 	// start 
-	createAllHtmlImage();
+	createAllGleis();
 	initAllZug();
-	
 }
 
-// this function works for already existing html tags
 function initAllZug(){
 	
 	// Wir erstellen eine Zug-Menge zunächst von Hand
-	let regio = new Train("Regio1", 90, 5000, 5000, "regio1", null);
-	let ice = new Train("ICE1", 250, 5000, 5000, "ice", null);
-	let shinkansen = new Train("Shinkansen1", 250, 5000, 5000, "shinkansen", null);
+	let regio = new Train("Regio1", 			 90, 2000, 4000+10000, regio1Image, 	   null);
+	let ice = new Train("ICE1", 				250, 4000, 5000+12000, iceImage, 	   null);
+	let shinkansen = new Train("Shinkansen1", 	250, 6000, 6000+12000, shinkansenImage, null);
 
 	allZug.push(regio);
 	allZug.push(ice);
 	allZug.push(shinkansen);
-	
-	// starte Timer für jeden Zug
-	allZug.forEach(function(item, index) {
-		//startTrain
-		//let freiesGleis = getFreiesGleis();
-		//if(freiesGleisc== -1)
-		//	console.error("No free track. Handle this situation as exception!!");
-	
-		console.log("handling allzug with index " + (index+1));	
-		let gleis = document.getElementById("gleis" + (index+1));
-		allGleis.push(gleis);
-		//<img id="train1" class="train-off train regio gleis1" src="FullTrain.png">
-		gleis.classList.add("train", "train-off",item.imageClass);
-		
-	});
-	
-	startTrafficManager();
-		
+
+	startTrafficManager();		
 }
+
 
 function startTrafficManager() {
-		// Start traffic Manager
-	allGleis.forEach(function(item, index) {
-		setTimeout(function(){ startTrain(item); }, getRandom(0, 7000) );	
+
+	allZug.forEach(function(zug, index) {
+		
+		setTimeout(function(){ startTrain(zug); }, getRandom(0, zug.delayTillStart) );
 	});
+	
 }
 
-// To manage tracks (1 track = 1 html-img)
-function createAllHtmlImage() {
+function createAllGleis() {
 	// <img id="train2" class="train-off train ice gleis2">
 
-		for (i = 0; i < maxGleis; i++) {
+	for (i = 0; i < maxGleis; i++) {
 
-			let trainArea = document.getElementById("train-area");
-			let newImg = document.createElement("img");
-			newImg.id = "gleis" + (i+1);
-			trainArea.appendChild(newImg);
-		}
-	
-
+		let trainArea = document.getElementById("train-area");
+		let newImg = document.createElement("img");
+		newImg.className = "train train-off";
+		newImg.id = "gleis" + (i+1);
+		trainArea.appendChild(newImg);
+		allGleis.push(newImg);
+	}
 }
 
 function getFreiesGleis () {
-	let freieGleise = [];
-	for (i = 0; i < maxGleis; i++) { 
-		if(allGleis[i]==null)
-			freieGleise.push(i);
+	let freieGleiseIndex = [];
+	for (i = 0; i < maxGleis; i++) {
+		if(allGleis[i].classList.contains("train-off")) {
+			console.log("freies Gleis: " + (i+1));
+			freieGleiseIndex.push(i);
+		}
 	}
-	if(freieGleise<=0)
+	if(freieGleiseIndex.length<=0)
 		return -1;
+
+	let randomPosition = getRandom(0, freieGleiseIndex.length);
 	
-	let randomPosition = Math.floor(Math.random() * freieGleise.length) + 1;
+
+	// Gleis blockieren
+	let gleisIndex = freieGleiseIndex[randomPosition];
 	
-	return freieGleise[randomPosition];
-	
+	console.log("random: " + randomPosition);
+	console.log("Freies Gleis aus Menge " + freieGleiseIndex + ": " + gleisIndex);
+	allGleis[gleisIndex].classList.remove("train-off");
+	return allGleis[gleisIndex];
+	//return "gleis" + gleisIndex;	
 }
 
 function disableAllButtons () {
@@ -114,50 +113,52 @@ function disableAllButtons () {
 	}
 }
 
-function startTrainWithNumber(num) {
-	let train = document.getElementById("train"+num);
-	startTrain(train);
-}
+function startTrain(zug) {
+	
+	// Freies Gleis suchen
+	zug.track = getFreiesGleis();
+	console.log("Zug " + zug.name + " erhält Gleis: " + zug.track.id);
 
-function startTrain(gleis) {
-	gleis.classList.replace("train-off", "travel-left-to-station");
+	let gleis = zug.track;
+	
+	if(gleis <= 0){
+		console.error("No free Track found");
+	}
+	
+	gleis.classList.add("travel-left-to-station");
+	gleis.classList.add(zug.imageClass);
 	//setTimeout(function(){ parkTrain(gleis); }, animationTime);
-	setTimeout(function(){ continueTrain(gleis); }, animationTime + pauseInMs);
-		
+	setTimeout(function(){ continueTrain(zug); }, zug.stationTime);
+	
 }
 
-function continueTrain(gleis) {
+function continueTrain(zug) {
+	let gleis = zug.track;
 	gleis.classList.replace("travel-left-to-station", "travel-station-to-right");
 	
-	setTimeout(function(){ parkTrain(gleis); }, retentionTime);
+	setTimeout(function(){ parkTrain(zug); }, retentionTime);
 }
 
-function continueTrainWithNumber(num) {
-	let train = document.getElementById("train"+num);
-	continueTrain(train);
-}
 
 function getRandom(min, max) {
-	return Math.floor(Math.random() * max) + min;
+	let rand = Math.floor(Math.random() * max) + min;
+	console.log("Random number: " + rand);
+	return rand;
 }
 
-function startAllTrain () {
-	let allTrain = [];
-	let num = 0;
+function parkTrain(zug) {
 	
-	while (document.getElementById("train" + ++num) != null) {
-		allTrain.push(document.getElementById("train"+num));	
-	}	
-	num--;
-
-	for(let i = 1; i<=num; i++) {
-		startTrainWithNumber(i);
-	}
-}
-
-function parkTrain(gleis) {
-	gleis.classList.replace("travel-left-to-station", "train-off");
-	gleis.classList.replace("travel-station-to-right", "train-off");
+	let gleis = zug.track;
+	zug.track = null;
 	
-	setTimeout (function() { startTrain(gleis)}, getRandom(5000,10000));
+	
+	gleis.className = "train train-off";
+
+console.log("Zug wird geparkt: ");
+console.log(zug);
+
+	// Remove all train classes from gleis
+	
+	setTimeout (function() { startTrain(zug)}, zug.delayTillStart);
 }
+
