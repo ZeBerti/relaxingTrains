@@ -17,3 +17,7 @@ ICE 3
 Sounds und Lizenz: https://www.salamisound.de/info1
 
 BR218 Sound: https://www.youtube.com/watch?v=5q3YoC4bLvk
+
+
+Animierte 3d Modells:
+https://hum3d.com/360-view/?id=206777
