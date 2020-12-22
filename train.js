@@ -1,7 +1,3 @@
-var animationTime = 8000;
-var pauseInMs = 5000;
-var retentionTime=8000;
-
 
 let maxTrain = 5;
 let maxGleis = 4;
@@ -16,12 +12,14 @@ var shinkansenImage = "shinkansen";
 
 
 // Train Objects
-function Train(name, speed, returnPeriodInMs, stationTimeMs, imageClass, track) {
+function Train(name, speed, delayTillStart, stationTimeMs, animation1Duration, animation2Duration, imageClass, track) {
   
   this.name = name;
   this.speed = speed;
-  this.delayTillStart = returnPeriodInMs;
+  this.delayTillStart = delayTillStart;
   this.stationTime = stationTimeMs;
+  this.animation1Duration = animation1Duration;
+  this.animation2Duration = animation2Duration;
   this.imageClass = imageClass;
   this.track = track;
   this.testRandom = function(){ return 2222;};
@@ -40,9 +38,9 @@ function startSimulation () {
 function initAllZug(){
 	
 	// Wir erstellen eine Zug-Menge zunächst von Hand
-	let regio = new Train("Regio1", 			 90, 2000, 4000+10000, regio1Image, 	   null);
-	let ice = new Train("ICE1", 				250, 4000, 5000+12000, iceImage, 	   null);
-	let shinkansen = new Train("Shinkansen1", 	250, 6000, 6000+12000, shinkansenImage, null);
+	let regio = new Train("Regio1", 			 90, 3000, 4000+10000, 10000, 14200, regio1Image, 	   null);
+	let ice = new Train("ICE1", 				250, 4000, 5000+12000, 12000, 10200, iceImage, 	   null);
+	let shinkansen = new Train("Shinkansen1", 	250, 6000, 6000+12000, 12000, 10200, shinkansenImage, null);
 
 	allZug.push(regio);
 	allZug.push(ice);
@@ -56,7 +54,7 @@ function startTrafficManager() {
 
 	allZug.forEach(function(zug, index) {
 		
-		setTimeout(function(){ startTrain(zug); }, getRandom(zug.delayTillStart, zug.delayTillStart * 2) );
+		setTimeout(function(){ startTrain(zug); }, getRandom(1500, zug.delayTillStart * 2) );
 	});
 	
 }
@@ -129,7 +127,7 @@ function continueTrain(zug) {
 	let gleis = zug.track;
 	gleis.classList.replace("travel-left-to-station", "travel-station-to-right");
 	
-	setTimeout(function(){ parkTrain(zug); }, retentionTime);
+	setTimeout(function(){ parkTrain(zug); }, zug.animation2Duration);
 }
 
 

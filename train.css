@@ -45,15 +45,15 @@ body {
 
 
 .travel-station-to-right.regio1 {
-	animation-duration: 9s;
+	animation-duration: 14s;
 }
 
 .travel-station-to-right.fern {
-	animation-duration: 8s;
+	animation-duration: 11s;
 }
 
 .travel-station-to-right.ice, .travel-station-to-right.shinkansen {
-	animation-duration: 7s;
+	animation-duration: 10s;
 }
 
 
@@ -100,11 +100,11 @@ body {
 
 @keyframes travel-left-to-station {
   0%   {margin-left:-5500px; }
-  100% {margin-left:100px; }
+  100% {margin-left:-100px; }
 }
 
 @keyframes travel-station-to-right {
-  0%   {margin-left:100px; }
-  100% {margin-left:3100px; }
+  0%   {margin-left:-100px; }
+  100% {margin-left:7100px; }
 }
 
