@@ -3,11 +3,6 @@ var pauseInMs = 5000;
 var retentionTime=8000;
 
 
-var gleis1 = null;
-var gleis2 = null;
-var gleis3 = null;
-var gleis4 = null;
-
 let maxTrain = 5;
 let maxGleis = 4;
 
@@ -61,7 +56,7 @@ function startTrafficManager() {
 
 	allZug.forEach(function(zug, index) {
 		
-		setTimeout(function(){ startTrain(zug); }, getRandom(0, zug.delayTillStart) );
+		setTimeout(function(){ startTrain(zug); }, getRandom(zug.delayTillStart, zug.delayTillStart * 2) );
 	});
 	
 }

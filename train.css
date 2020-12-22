@@ -26,7 +26,7 @@ body {
 
 .train {
 	position: absolute;
-	height: 120px;
+	height: 150px;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
