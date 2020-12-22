@@ -93,7 +93,6 @@ function getFreiesGleis () {
 
 	let randomPosition = getRandom(0, freieGleiseIndex.length);
 	
-
 	// Gleis blockieren
 	let gleisIndex = freieGleiseIndex[randomPosition];
 	
@@ -101,7 +100,6 @@ function getFreiesGleis () {
 	console.log("Freies Gleis aus Menge " + freieGleiseIndex + ": " + gleisIndex);
 	allGleis[gleisIndex].classList.remove("train-off");
 	return allGleis[gleisIndex];
-	//return "gleis" + gleisIndex;	
 }
 
 function disableAllButtons () {

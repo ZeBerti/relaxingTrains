@@ -27,9 +27,7 @@ body {
 .train {
 	position: absolute;
 	height: 120px;
-	
 	animation-iteration-count: 1;
-
 	animation-fill-mode: forwards;
 }
 
@@ -85,13 +83,7 @@ body {
     display: block;
 	opacity: 1;
 	animation-name: travel-left-to-station;
-	
-	// starting slow and rapidly stop
-	//animation-timing-function: cubic-bezier(.66,0,1,1);
-	
-	// for start sto
-	//animation-timing-function: cubic-bezier(0.1,.02,.12,1.04);
-	animation-timing-function: cubic-bezier(.02,.04,.6,1.04);
+	animation-timing-function: cubic-bezier(.02,.04,.3,1.02);
 }
 
 .travel-station-to-right {
@@ -101,7 +93,7 @@ body {
 	
 	// starting slow and rapidly stop
 	//animation-timing-function: cubic-bezier(.66,0,1,1);
-	animation-timing-function: ease-in;
+	animation-timing-function: cubic-bezier(.7,.14,.73,.56);
 	
 }
 
