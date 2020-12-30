@@ -43,6 +43,10 @@ body {
 	animation-duration: 10s;
 }
 
+.travel-left-to-station.cybertruck {
+	animation-duration: 5s;
+}
+
 
 .travel-station-to-right.regio1 {
 	animation-duration: 14s;
@@ -56,6 +60,10 @@ body {
 	animation-duration: 10s;
 }
 
+.travel-station-to-right.cybertruck {
+	animation-duration: 5s;
+}
+
 
 .regio1 {
 	 content:url(img/FullTrain2.png);
@@ -67,6 +75,10 @@ body {
 
 .shinkansen {
 	content:url(img/Shinkansn_Proto_2_Transparent.png);
+}
+
+.cybertruck {
+	content:url(img/cybertruck.png);
 }
 
 .signal {

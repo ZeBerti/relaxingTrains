@@ -9,6 +9,7 @@ var allZug = [];
 var regio1Image = "regio1";
 var iceImage = "ice";
 var shinkansenImage = "shinkansen";
+var cybertruck = "cybertruck";
 
 
 // Train Objects
@@ -38,13 +39,17 @@ function startSimulation () {
 function initAllZug(){
 	
 	// Wir erstellen eine Zug-Menge zunächst von Hand
+	// name, speed, delayTillStart, stationTimeMs, animation1Duration, animation2Duration, imageClass, platform
 	let regio = new Train("Regio1", 			 90, 3000, 4000, 10000, 14200, regio1Image, 	null);
 	let ice = new Train("ICE1", 				250, 6000, 5000, 12000, 10200, iceImage, 	   	null);
 	let shinkansen = new Train("Shinkansen1", 	250, 8000, 6000, 12000, 10200, shinkansenImage, null);
+	let tesla = new Train("Cyber1", 		250, 12000,5000, 5000, 5000, cybertruck, null);
+	
 
 	allZug.push(regio);
 	allZug.push(ice);
 	allZug.push(shinkansen);
+	allZug.push(tesla);
 
 	startTrafficManager();		
 }
