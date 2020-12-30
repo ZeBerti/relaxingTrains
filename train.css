@@ -3,20 +3,20 @@ body {
 	background-color: slategray;
 }
 
-#gleis1 {
+#gleis1, #signal1 {
 	top: 50px;
 }
 
 
-#gleis2 {
+#gleis2, #signal2 {
 	top: 200px;
 }
 
-#gleis3 {
+#gleis3, #signal3 {
 	top: 350px;
 }
 
-#gleis4 {
+#gleis4, #signal4 {
 	top: 500px;
 }
 
@@ -58,7 +58,7 @@ body {
 
 
 .regio1 {
-	 content:url(img/FullTrain.png);
+	 content:url(img/FullTrain2.png);
 }
 
 .ice {
@@ -67,6 +67,19 @@ body {
 
 .shinkansen {
 	content:url(img/Shinkansn_Proto_2_Transparent.png);
+}
+
+.signal {
+	position: absolute;
+	width: 33px;
+	margin-top: 75px;
+}
+.signal-green {
+	content:url(img/signal/green.png);
+}
+
+.signal-rot {
+	content:url(img/signal/red.png);
 }
 
 .transrapit {
